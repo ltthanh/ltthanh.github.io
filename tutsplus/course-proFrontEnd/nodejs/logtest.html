@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <button id="someAction">Some button</button>
+        <script>
+            'use strict';
+            
+            var button = document.getElementById('someAction');
+            function sendLog(message) {
+                var beacon = document.createElement('a');
+                beacon.href = 'http://localhost:8080/logger/?message=' + encodeURIComponent(message);
+                beacon.style.color = 'red';
+                document.body.appendChild(beacon);
+            }
+            
+            function logMessage(message, send) {
+                console.log(message);
+                if(send) {
+                    sendLog(message);
+                }
+            }            
+            
+            logMessage('Page loaded', true);
+            button.addEventListener('click', function() {
+                logMessage('The button was clicked', true);
+            });
+        </script>
+    </body>
+</html>
